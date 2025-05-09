@@ -26,6 +26,11 @@ tasks.shadowJar.configure {
     archiveFileName.set("clipboard-agent.jar")
 }
 
+// Remove generated standard jar task (e.g., clipboard-agent-1.0.jar)
+tasks.jar {
+    enabled = false
+}
+
 tasks.build.configure {
     dependsOn(tasks.shadowJar)
 }
