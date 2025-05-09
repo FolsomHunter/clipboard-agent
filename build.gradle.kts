@@ -6,7 +6,7 @@ plugins {
 group = "dev.xdark"
 version = "1.0"
 
-java.toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(20))
 
 repositories.mavenCentral()
 dependencies.implementation("org.ow2.asm:asm:9.7.1")
@@ -24,6 +24,11 @@ tasks.shadowJar.configure {
     relocate("org.objectweb.asm", "dev.xdark.clipboardagent.org.objectweb.asm")
     minimize()
     archiveFileName.set("clipboard-agent.jar")
+}
+
+// Remove generated standard jar task (e.g., clipboard-agent-1.0.jar)
+tasks.jar {
+    enabled = false
 }
 
 tasks.build.configure {
